@@ -31,7 +31,6 @@ describe "search", type: :feature do
     MetaQuery.create(keywords: 'programming')
 
     visit root_path
-    fill_in "q", with: "programming"
 
     within "div.col-md-3" do
       expect(page).to have_content "2"
