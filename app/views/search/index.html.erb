@@ -30,6 +30,14 @@
 
   <div class="col-md-9">
     <% if @results.present? %>
+      <div class="well">
+        <h4>Previously Searched</h4>
+         <ul>
+           <% @meta_query.queries.each do |query| %>
+             <li><%= query.created_at %></li>
+           <% end %>
+         </ul>
+      </div>
       <h3>Results</h3>
       <table class="table">
         <tr>

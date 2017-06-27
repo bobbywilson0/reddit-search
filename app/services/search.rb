@@ -1,4 +1,6 @@
 class Search
+  attr_reader :meta_query
+
   def initialize(keywords)
     @keywords = keywords.strip
     @meta_query = MetaQuery.find_or_create_by(keywords: @keywords)

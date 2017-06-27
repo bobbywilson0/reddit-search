@@ -54,4 +54,19 @@ describe "search", type: :feature do
       expect(page).to have_content "programming"
     end
   end
+
+  it "shows previously searched keyword timestamps" do
+    stub_request(:get, "https://www.reddit.com/search.json?q=programming")
+      .to_return(status: 200, body: programming_response, headers: {})
+
+    meta_query = MetaQuery.create(keywords: 'programming')
+    meta_query.queries.create
+    meta_query.queries.create
+
+    visit root_path
+    fill_in "q", with: "programming"
+    click_button "Search"
+
+    expect(page).to have_content Query.last.created_at
+  end
 end
