@@ -1,22 +1,32 @@
-<%= form_tag '/', method: :get %>
-<%= text_field_tag :q %>
-<%= submit_tag 'Search' %>
-
-<% if @results.present? %>
-  <h2>Results</h2>
-  <table>
-    <tr>
-      <td>Title</td>
-      <td>Score</td>
-      <td>Comments</td>
-    </tr>
-    <% @results.each do |result| %>
-      <tr>
-        <td><%= result[:title] %></td>
-        <td><%= result[:score] %></td>
-        <td><%= result[:num_comments] %></td>
-      </tr>
+<div class="row">
+  <h1>Reddit Search</h1>
+  <div class="col-md-4 col-md-offset-4">
+    <%= form_tag '/', method: :get, class: 'form-inline' do %>
+      <div class="form-group">
+        <%= text_field_tag :q, nil, class: 'form-control' %>
+      </div>
+      <%= submit_tag 'Search', class: 'btn btn-default' %>
     <% end %>
-  </table>
-<% end %>
-
+  </div>
+</div>
+<div class="row">
+  <div>
+    <% if @results.present? %>
+      <h3>Results</h3>
+      <table class="table">
+        <tr>
+          <th>Title</th>
+          <th>Score</th>
+          <th>Comments</th>
+        </tr>
+        <% @results.each do |result| %>
+          <tr>
+            <td><%= result[:title] %></td>
+            <td><%= result[:score] %></td>
+            <td><%= result[:num_comments] %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+</div>
