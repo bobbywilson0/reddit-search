@@ -10,7 +10,25 @@
   </div>
 </div>
 <div class="row">
-  <div>
+  <div class="col-md-3">
+    <h3>Search History</h3>
+    <table class="table">
+      <tr>
+        <td>Phrase</td>
+        <td>Count</td>
+        <td>Time</td>
+      </tr>
+      <% @meta_queries.each do |meta_query| %>
+        <tr>
+          <td><%= meta_query.keywords %></td>
+          <td><%= meta_query.queries_count %></td>
+          <td><%= meta_query.updated_at.strftime("%m/%d/%y %-l:%M %p") %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class="col-md-9">
     <% if @results.present? %>
       <h3>Results</h3>
       <table class="table">

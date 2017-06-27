@@ -26,4 +26,16 @@ describe "search", type: :feature do
     click_button "Search"
     expect(page).to have_content "Programming"
   end
+
+  it "only shows unique searches" do
+    MetaQuery.create(keywords: 'programming')
+
+    visit root_path
+    fill_in "q", with: "programming"
+
+    within "div.col-md-3" do
+      expect(page).to have_content "2"
+    end
+  end
+
 end
