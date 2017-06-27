@@ -14,9 +14,9 @@
     <h3>Search History</h3>
     <table class="table">
       <tr>
-        <td>Phrase</td>
-        <td>Count</td>
-        <td>Time</td>
+        <td><%= link_to 'Keywords', sort: 'keywords' %></td>
+        <td><%= link_to 'Count', sort: 'queries_count' %></td>
+        <td><%= link_to 'Time', sort: 'updated_at' %></td>
       </tr>
       <% @meta_queries.each do |meta_query| %>
         <tr>

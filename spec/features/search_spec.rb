@@ -38,4 +38,20 @@ describe "search", type: :feature do
     end
   end
 
+  it "can sort past searches" do
+    MetaQuery.create(keywords: 'programming')
+    MetaQuery.create(keywords: 'ducks', queries_count: 2)
+
+    visit root_path
+
+    within "tr:nth-child(3) > td:nth-child(1)" do
+      expect(page).to have_content "ducks"
+    end
+
+    click_on "Count"
+
+    within "tr:nth-child(3) > td:nth-child(1)" do
+      expect(page).to have_content "programming"
+    end
+  end
 end
